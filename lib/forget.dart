@@ -1,25 +1,31 @@
+// ignore_for_file: unused_import
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'dart:math';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseOptions(
-        apiKey: "AIzaSyCROCE0_sqQkmEaOOJ8vMfuAngOloYy13A",
-        authDomain: "pinion-dashboard.firebaseapp.com",
-        projectId: "pinion-dashboard",
-        storageBucket: "pinion-dashboard.appspot.com",
-        messagingSenderId: "728065026848",
-        appId: "1:728065026848:web:cdb76f6ef8302138514545",
-        measurementId: "G-79KFV782W1"),
+      apiKey: "AIzaSyCROCE0_sqQkmEaOOJ8vMfuAngOloYy13A",
+      authDomain: "pinion-dashboard.firebaseapp.com",
+      projectId: "pinion-dashboard",
+      storageBucket: "pinion-dashboard.appspot.com",
+      messagingSenderId: "728065026848",
+      appId: "1:728065026848:web:cdb76f6ef8302138514545",
+      measurementId: "G-79KFV782W1",
+    ),
   );
 }
 
+// ignore: must_be_immutable
 class ResetPasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
+  String generatedOTP = '';
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +72,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     labelStyle: TextStyle(color: Colors.white),
                     suffixIcon: TextButton(
                       onPressed: () {
-                        _sendResetPasswordEmail(context);
+                        _generateAndSendOTP(context);
                       },
                       child: Text(
                         'Send OTP',
@@ -124,13 +130,14 @@ class ResetPasswordScreen extends StatelessWidget {
     );
   }
 
-  void _sendResetPasswordEmail(BuildContext context) async {
-    final email = emailController.text;
+  Future<void> _generateAndSendOTP(BuildContext context) async {
     final auth = FirebaseAuth.instance;
-
+    generatedOTP = _generateRandomOTP();
     try {
-      await auth.sendPasswordResetEmail(email: email);
-
+      await auth.sendPasswordResetEmail(email: generatedOTP);
+      // Generate a new OTP
+      // Simulate sending the OTP via email (you can send it via your email service)
+      print('Generated OTP: $generatedOTP');
       // OTP sent successfully
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -147,31 +154,28 @@ class ResetPasswordScreen extends StatelessWidget {
     }
   }
 
-  void _verifyOTP(BuildContext context) async {
+  void _verifyOTP(BuildContext context) {
     final enteredOTP = otpController.text;
-    final email = emailController.text;
-    final auth = FirebaseAuth.instance;
-
-    try {
-      final currentUser = await auth.currentUser;
-      final credential =
-          EmailAuthProvider.credential(email: email, password: enteredOTP);
-      await currentUser?.reauthenticateWithCredential(credential);
-
+    if (enteredOTP == generatedOTP) {
       // OTP verified successfully, navigate to the password reset screen
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => PasswordResetScreen(email: email),
+          builder: (context) =>
+              PasswordResetScreen(email: emailController.text),
         ),
       );
-    } catch (e) {
-      // Handle errors
+    } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error verifying OTP: $e'),
+          content: Text('Invalid OTP. Please try again.'),
         ),
       );
     }
+  }
+
+  String _generateRandomOTP() {
+    final random = Random();
+    return random.nextInt(999999).toString().padLeft(6, '0');
   }
 }
 
