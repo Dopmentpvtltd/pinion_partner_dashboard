@@ -43,6 +43,11 @@ class _PAckagesState extends State<PAckages> {
             margin: EdgeInsets.all(100.0),
             child: Column(
               children: [
+                 Container(
+                  child: Align(
+                    child: Image.asset("images/most-popular.png"),
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
