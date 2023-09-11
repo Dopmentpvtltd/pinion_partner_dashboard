@@ -374,8 +374,16 @@ void _showNotification(String message) {
                             ),
                           ),
                         ),
+                      
                       ),
                     ),
+                    SizedBox(height: 40,),
+                    Container(
+                      width: 350,
+                      child: Image.asset(
+                        "images/pr.png"
+                      ),
+                    )
                   ],
                 ),
               ),
