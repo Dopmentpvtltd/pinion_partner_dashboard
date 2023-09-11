@@ -27,6 +27,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   TextEditingController _websiteController = TextEditingController();
   bool _isChecked1 = true;
   bool _isChecked2 = true;
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   void _launchURL(String url) async {
     if (await canLaunch(url)) {
@@ -37,27 +38,40 @@ class _RegistrationPageState extends State<RegistrationPage> {
   }
 
   Future<void> _register() async {
-    try {
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
+  try {
+    UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
 
-      final user = userCredential.user;
-      if (user != null) {
-        // Store additional user data in Cloud Firestore
-        await _firestore.collection('users').doc(user.uid).set({
-          'email': _emailController.text,
-        });
+    final user = userCredential.user;
+    if (user != null) {
+      // Send email verification
+      await user.sendEmailVerification();
+ 
+      // Store additional user data in Cloud Firestore
+      await _firestore.collection('users').doc(user.uid).set({
+        'email': _emailController.text,
+      });
 
-        // Navigate to another page or perform actions after registration
-      }
-    } catch (e) {
-      print('Error during registration: $e');
-      // Handle registration error
+  
+      _showNotification('Verification email sent to your account.');
+       Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) =>LoginPage()));
+  
     }
+  } catch (e) {
+    // Handle registration error
+    _showNotification('Error during registration: $e');
   }
+}
+
+void _showNotification(String message) {
+  final snackBar = SnackBar(content: Text(message));
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+
 
   bool _obscureText = true;
 
@@ -70,6 +84,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       key: _scaffoldKey,
       body: SingleChildScrollView(
         child: Container(
           child: Row(
@@ -239,17 +254,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           SizedBox(height: 10),
                           Container(
                             child: ElevatedButton(
-                              onPressed: (_isChecked1 && _isChecked2)
-                                  ? () {
-                                      String password =
-                                          _passwordController.text;
-                                      String confirmPassword =
-                                          _confirmpasswordController.text;
+  onPressed: (_isChecked1 && _isChecked2)
+    ? () {
+      String password = _passwordController.text;
+      String confirmPassword = _confirmpasswordController.text;
 
-                                      if (password == confirmPassword) {
-                                      } else {}
-                                    }
-                                  : null, // Disable button if checkboxes are not both checked
+      if (password == confirmPassword) {
+        _register(); // Call the _register method
+      } else {
+        // Handle password mismatch error
+        _showNotification('Passwords do not match.');
+      }
+    }
+    : null,// Disable button if checkboxes are not both checked
                               style: ElevatedButton.styleFrom(
                                 primary: _isChecked1 && _isChecked2
                                     ? Color(0xFF0D47A1)
