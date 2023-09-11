@@ -638,7 +638,15 @@ class _PAckagesState extends State<PAckages> {
                   ],
                 ),
                 SizedBox(
-                  height: 20.0,
+                  height: 20,
+                ),
+                Container(
+                  child: Center(
+                    child: Image.asset("images/Capture-1.png"),
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -699,7 +707,7 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("180+ News publications Guaranteed"),
                             ],
                           ),
                           Container(
@@ -711,38 +719,38 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("Three-days Turnover"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("No Limit for hyperlinks, media & images"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("Reports with live links"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("SEO Adjustment & Grammar check"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("24/7 Live Support"),
                             ],
                           ),
-                          SizedBox(height: 20),
+                          SizedBox(height: 60),
                           MouseRegion(
                             onEnter: (_) {
                               setState(() {
@@ -868,7 +876,8 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text(
+                                  "500+ US & Int. News publications\n Guaranteed"),
                             ],
                           ),
                           Container(
@@ -878,43 +887,53 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("24 Hours Turnover"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("7 for do follow hyperlinks, one images"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text(
+                                  "Report with live links and white label\n option available"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("1200 Words limit"),
                             ],
                           ),
                           Row(
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("SEO Adjustment & Grammar check"),
                             ],
                           ),
-                          SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Icon(Icons.check,
+                                  color: Colors.green), // Always checked
+                              Text("24/7 Live Support"),
+                            ],
+                          ),
+                          SizedBox(height: 60),
                           MouseRegion(
                             onEnter: (_) {
-                              setState(() {
-                                _hoveredUpdateInfoButton = '5';
-                              });
+                              setState(
+                                () {
+                                  _hoveredUpdateInfoButton = '5';
+                                },
+                              );
                             },
                             onExit: (_) {
                               setState(
@@ -1020,7 +1039,8 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text(
+                                  "Ad banner placements on 2 websites\n French or Spanish specific websites"),
                             ],
                           ),
                           SizedBox(
@@ -1040,7 +1060,7 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("15000+ Guaranteed Ads Impressions"),
                             ],
                           ),
                           SizedBox(
@@ -1050,7 +1070,7 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("400+ News publications Guaranteed"),
                             ],
                           ),
                           SizedBox(
@@ -1060,7 +1080,7 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("Same-day publication"),
                             ],
                           ),
                           SizedBox(
@@ -1070,7 +1090,7 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("No Limit for hyperlinks, media & images"),
                             ],
                           ),
                           SizedBox(
@@ -1080,10 +1100,38 @@ class _PAckagesState extends State<PAckages> {
                             children: [
                               Icon(Icons.check,
                                   color: Colors.green), // Always checked
-                              Text("Published on Main Domains"),
+                              Text("Extensive reports with live links"),
                             ],
                           ),
-                          SizedBox(height: 20),
+                          Row(
+                            children: [
+                              Icon(Icons.check,
+                                  color: Colors.green), // Always checked
+                              Text("No Word limit"),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.check,
+                                  color: Colors.green), // Always checked
+                              Text("SEO Adjustment & Grammar check"),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.check,
+                                  color: Colors.green), // Always checked
+                              Text("24/7 Live Support"),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.check,
+                                  color: Colors.green), // Always checked
+                              Text("Outreach to targeted journalist"),
+                            ],
+                          ),
+                          SizedBox(height: 50),
                           MouseRegion(
                             onEnter: (_) {
                               setState(() {
