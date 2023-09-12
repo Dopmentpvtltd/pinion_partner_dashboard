@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/Buy Now/1st.dart';
 
 class PAckages extends StatefulWidget {
   const PAckages({
@@ -43,10 +44,16 @@ class _PAckagesState extends State<PAckages> {
             margin: EdgeInsets.all(100.0),
             child: Column(
               children: [
-                 Container(
+                SizedBox(
+                  height: 30,
+                ),
+                Container(
                   child: Align(
                     child: Image.asset("images/most-popular.png"),
                   ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -200,7 +207,10 @@ class _PAckagesState extends State<PAckages> {
                                     .center, // Align the button to the center
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Button logic
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Screen1()));
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
@@ -411,7 +421,12 @@ class _PAckagesState extends State<PAckages> {
                                     .center, // Align the button to the center
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Button logic
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => Screen1(),
+                                      ),
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
@@ -609,7 +624,10 @@ class _PAckagesState extends State<PAckages> {
                                     .center, // Align the button to the center
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Button logic
+                                     Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Screen1()));// Button logic
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
@@ -643,7 +661,7 @@ class _PAckagesState extends State<PAckages> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
                 Container(
                   child: Center(
@@ -777,7 +795,10 @@ class _PAckagesState extends State<PAckages> {
                                     .center, // Align the button to the center
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Button logic
+                                     Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Screen1()));// Button logic
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
@@ -955,7 +976,10 @@ class _PAckagesState extends State<PAckages> {
                                     .center, // Align the button to the center
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Button logic
+                                     Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Screen1()));// Button logic
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
@@ -1158,7 +1182,10 @@ class _PAckagesState extends State<PAckages> {
                                     .center, // Align the button to the center
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Button logic
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Screen1())); // Button logic
                                   },
                                   style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
