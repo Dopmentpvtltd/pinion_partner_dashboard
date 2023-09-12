@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Registrationpage.dart';
+import 'Fotter_Z.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -55,16 +56,28 @@ class LoginPage extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width / 8,
-                    0,
-                    MediaQuery.of(context).size.width / 8,
-                    0,
-                  ),
                   children: [
-                    Menu(),
+                    Container(
+                        padding: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width / 8,
+                          0,
+                          MediaQuery.of(context).size.width / 8,
+                          0,
+                        ),
+                        child: Menu()),
                     SizedBox(height: 20),
-                    Body(_emailController, _passwordController),
+                    Container(
+                        padding: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width / 8,
+                          0,
+                          MediaQuery.of(context).size.width / 8,
+                          0,
+                        ),
+                        child: Body(_emailController, _passwordController)),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Fotter(),
                   ],
                 ),
               ),
