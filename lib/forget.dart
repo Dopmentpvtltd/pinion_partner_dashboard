@@ -1,28 +1,28 @@
-// ignore_for_file: unused_import
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'dart:math';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseOptions(
-      apiKey: "AIzaSyCROCE0_sqQkmEaOOJ8vMfuAngOloYy13A",
-      authDomain: "pinion-dashboard.firebaseapp.com",
-      projectId: "pinion-dashboard",
-      storageBucket: "pinion-dashboard.appspot.com",
-      messagingSenderId: "728065026848",
-      appId: "1:728065026848:web:cdb76f6ef8302138514545",
-      measurementId: "G-79KFV782W1",
-    ),
+        apiKey: "AIzaSyCROCE0_sqQkmEaOOJ8vMfuAngOloYy13A",
+        authDomain: "pinion-dashboard.firebaseapp.com",
+        projectId: "pinion-dashboard",
+        storageBucket: "pinion-dashboard.appspot.com",
+        messagingSenderId: "728065026848",
+        appId: "1:728065026848:web:cdb76f6ef8302138514545",
+        measurementId: "G-79KFV782W1"),
   );
 }
 
-// ignore: must_be_immutable
-class ResetPasswordScreen extends StatelessWidget {
+class ResetPasswordScreen extends StatefulWidget {
+  @override
+  _ResetPasswordScreenState createState() => _ResetPasswordScreenState();
+}
+
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
   String generatedOTP = '';
@@ -61,7 +61,7 @@ class ResetPasswordScreen extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               Container(
-                width: 500, // Set the desired width here
+                width: 500,
                 child: TextField(
                   controller: emailController,
                   decoration: InputDecoration(
@@ -86,43 +86,6 @@ class ResetPasswordScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(height: 20.0),
-              Container(
-                width: 500, // Set the desired width here
-                child: TextField(
-                  controller: otpController,
-                  decoration: InputDecoration(
-                    labelText: 'Enter OTP',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    labelStyle: TextStyle(color: Colors.white),
-                  ),
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              SizedBox(height: 20.0),
-              ElevatedButton(
-                onPressed: () {
-                  _verifyOTP(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  onPrimary: Colors.white, // Text color when not hovered
-                  padding: EdgeInsets.symmetric(
-                    vertical: 22,
-                    horizontal: 55,
-                  ),
-                  elevation: 5, // Shadow when not hovered
-                  onSurface: Colors.grey, // Background color when hovered
-                ),
-                child: Text(
-                  'Verify OTP',
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -132,12 +95,18 @@ class ResetPasswordScreen extends StatelessWidget {
 
   Future<void> _generateAndSendOTP(BuildContext context) async {
     final auth = FirebaseAuth.instance;
-    generatedOTP = _generateRandomOTP();
+    final userEmail = emailController.text;
+
     try {
-      await auth.sendPasswordResetEmail(email: generatedOTP);
-      // Generate a new OTP
+      // Send a password reset email to the user's email address
+      await auth.sendPasswordResetEmail(email: userEmail);
+
+      // Generate a new OTP (optional)
+      generatedOTP = _generateRandomOTP();
+
       // Simulate sending the OTP via email (you can send it via your email service)
       print('Generated OTP: $generatedOTP');
+
       // OTP sent successfully
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -156,6 +125,7 @@ class ResetPasswordScreen extends StatelessWidget {
 
   void _verifyOTP(BuildContext context) {
     final enteredOTP = otpController.text;
+
     if (enteredOTP == generatedOTP) {
       // OTP verified successfully, navigate to the password reset screen
       Navigator.of(context).pushReplacement(
@@ -183,8 +153,6 @@ class PasswordResetScreen extends StatelessWidget {
   final String email;
 
   PasswordResetScreen({required this.email});
-
-  // Add your password reset UI here
 
   @override
   Widget build(BuildContext context) {
