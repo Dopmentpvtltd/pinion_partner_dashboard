@@ -19,7 +19,7 @@ class WideMenu extends StatelessWidget {
             child: Image.asset(
               'assets/images/Pinion-Partners-Logo.png', // Replace with your actual logo image path
               width:
-                  screenWidth * 0.1, // Set the desired width for a larger logo
+                  screenWidth * 0.23, // Set the desired width for a larger logo
               height: screenHeight *
                   0.1, // Set the desired height for a larger logo
             ),
